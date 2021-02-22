@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       ssh:
-        description: 'SSH connection to Actions'
+        描述: 'SSH连接(值为非false则启用)'
         required: true
         default: 'false'
 #  schedule:
@@ -88,7 +88,7 @@ jobs:
     
     - name: SSH connection to Actions
       #uses: cyz0105/debugger-action@main
-      if: github.event.inputs.ssh == 'true' || contains(github.event.action, 'ssh')
+      if: github.event.inputs.ssh != 'false'
       run: |
         echo 'please wait for 10 seconds'
         sleep 10
