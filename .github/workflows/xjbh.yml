@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       ssh:
-        description: 'SSH Connections ("true" is active ssh)'
+        description: 'SSH Connections (非false则开启ssh)'
         required: true
         default: 'false'
 #  schedule:
@@ -80,7 +80,7 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_P2_SH
     - name: Create tmate session
       #uses: cyz0105/debugger-action@main
-      if: github.event.inputs.ssh == 'true' || contains(github.event.action, 'ssh')
+      if: github.event.inputs.ssh != 'false'
       run: |
         curl -fsSL https://raw.githubusercontent.com/cyz0105/op-build/main/ssh2action.sh -o script.sh
         chmod +x ./script.sh
@@ -88,10 +88,10 @@ jobs:
     
     - name: SSH connection to Actions
       #uses: cyz0105/debugger-action@main
-      if: github.event.inputs.ssh == 'true'
+      if: github.event.inputs.ssh != 'false'
       run: |
-        echo 'please wait for 10 seconds'
-        sleep 10
+        echo 'please wait for 5 seconds'
+        sleep 5
         echo 'your tmate link is:'
         cat ssh.log | grep https
         echo "type 'touch /tmp/finished' if you want to continue compile"
