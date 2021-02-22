@@ -103,7 +103,7 @@ jobs:
       if: env.UPLOAD_CONFIG_TO_COWTRANSFER == 'true'
       run: |
         cd $GITHUB_WORKSPACE/openwrt
-        curl -fsSL git.io/file-transfer | sh
+        curl -fsSL https://raw.githubusercontent.com/cyz0105/Compile_Openwrt_On_Github_Actions/main/updatefiles.sh?token=ANPCBNM7IFEZ7YNV42DJ433AHUYU6 | sh
         cp -r .config ipqxjbh_generate.config
         ./transfer cow --block 2621440 -s -p 64 --no-progress 'ipqxjbh_generate.config' 2>&1 | tee cowtransfer_config.log
         echo "::warning file=cowtransfer.com::$(cat cowtransfer_config.log | grep https)"
