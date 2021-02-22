@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       ssh:
-        描述: 'SSH Connections ("true" is active ssh)'
+        description: 'SSH Connections ("true" is active ssh)'
         required: true
         default: 'false'
 #  schedule:
