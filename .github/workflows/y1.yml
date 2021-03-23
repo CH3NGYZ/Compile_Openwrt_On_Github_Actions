@@ -1,4 +1,4 @@
-name: NEW3编译
+name: NEWifi Mini编译
 on:
   repository_dispatch:
   workflow_dispatch:
