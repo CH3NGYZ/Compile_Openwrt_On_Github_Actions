@@ -104,8 +104,9 @@ jobs:
     - name: Upload .config to cowtransfer
       if: env.UPLOAD_CONFIG_TO_COWTRANSFER == 'true'
       run: |
+        cp -f .config config.config
         curl -fsSL git.io/file-transfer | sh
-        ./transfer wet -s -p 16 --no-progress '.config' 2>&1 | tee wetransfer_config.log
+        ./transfer wet -s -p 16 --no-progress 'config.config' 2>&1 | tee wetransfer_config.log
         cat wetransfer_config.log | grep https
         
     - name: Download package
