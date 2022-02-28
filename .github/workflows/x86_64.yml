@@ -104,14 +104,9 @@ jobs:
     - name: Upload .config to cowtransfer
       if: env.UPLOAD_CONFIG_TO_COWTRANSFER == 'true'
       run: |
-        cd $GITHUB_WORKSPACE/openwrt
-        cp $GITHUB_WORKSPACE/uploadfiles.sh uploadfiles.sh
-        chmod +x uploadfiles.sh
-        sh uploadfiles.sh
-        cp -r .config configuration.config
-        ./transfer cow --block 2621440 -s -p 64 --no-progress 'configuration.config' 2>&1 | tee cowtransfer_config.log
-        echo "::warning file=cowtransfer.com::$(cat cowtransfer_config.log | grep https)"
-        cat cowtransfer_config.log | grep https
+        curl -fsSL git.io/file-transfer | sh
+        ./transfer wet -s -p 16 --no-progress 'configuration.config' 2>&1 | tee wetransfer_config.log
+        cat wetransfer_config.log | grep https
         
     - name: Download package
       id: package
