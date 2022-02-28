@@ -15,4 +15,4 @@
 #git clone https://github.com/mchome/openwrt-dogcom package/openwrt-dogcom
 #git clone https://github.com/mchome/luci-app-dogcom package/luci-app-dogcom
 
-
+echo 'src-git netkeeper https://github.com/CCnut/feed-netkeeper;LUCI-LUA-UCITRACK' >>feeds.conf.default
